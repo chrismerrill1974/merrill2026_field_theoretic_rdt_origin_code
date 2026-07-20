@@ -41,6 +41,30 @@ python3 u_sigma.py     # potential -> saturating law, alpha free (instant)
 python3 geff_check.py  # stellar limit -> contraction reproduces III V8 (seconds)
 ```
 
+## Terrestrial test (continuation note)
+
+The `terrestrial_G/` subdirectory holds the code for the continuation note
+*A Terrestrial Test of Radial Dimensionality Theory: Source-Mass Density
+Dependence of Newton's Constant*, which applies this paper's coupling
+`G_eff = G_N/(1 - sigma)` to laboratory determinations of `G`. Because a uniform
+body's external field is enhanced by `1/(1 - sigma(rho))`, denser **source**
+masses should gravitate fractionally harder, so measured `G` should depend
+weakly on source-mass density.
+
+| File | Purpose |
+|---|---|
+| `terrestrial_G/terrestrial_g.py` | **The prediction.** The source-density differential `Delta G/G = sigma(rho1) - sigma(rho2)` for representative material pairs, and the sapphire -> tungsten signal for a dedicated experiment. |
+| `terrestrial_G/g_regression.py` | **The test.** Regression of the RDT slope against the CODATA-input `G` dataset (N=12; values pinned to Schlamminger-Gundlach-Newman 2015 and Metrologia 2026), Birge-inflated; plus the NIST-2026 within-apparatus copper-vs-sapphire controlled swap. |
+
+```sh
+python3 terrestrial_G/terrestrial_g.py   # RDT source-density differential (instant)
+python3 terrestrial_G/g_regression.py    # regression + NIST controlled swap (instant)
+```
+
+The result is systematics-limited and internally ambiguous — a screen and a
+proposal, not a measurement of `A`; see the continuation note for the full
+discussion.
+
 ## Related repositories
 
 The stellar machinery (`eos.py`, `tov.py`, `data/`) is shared with the Paper III
