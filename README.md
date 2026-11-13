@@ -1,79 +1,41 @@
-# Field-Theoretic Origin Code — Radial Dimensionality Theory VI
+# Radial Dimensionality Theory VI: A Field-Theoretic Origin for the Density-Dependent Gravitational Coupling
 
-Companion repository for **Radial Dimensionality Theory VI: A Field-Theoretic
-Origin for the Density-Dependent Gravitational Coupling**
-(C. K. Merrill and Claude, 2026).
+Scientific source and reproducible results for version v2.
 
-Paper VI gives RDT an action. The key claim is that, in the regime where RDT
-acts (dense matter, with vacuum reducing to general relativity), the series'
-divergence operator is operationally a **density-dependent effective
-gravitational coupling**
+- [Paper](reproduction/output/pdf/publication/paper6/merrill_rdt_field_theoretic_origin_v2.pdf)
+- [Manuscript](reproduction/paper6/V1_Paper/paper6_v1.tex)
 
-    G_eff(rho) = 3 G_N / d_eff(rho) = G_N / (1 - sigma),
-    sigma = A x/(1+x),  x = (rho/rho0)^alpha,  rho0 = 150 g/cm^3,
+## Reproduction
 
-realized by a single non-minimally coupled scalar field sigma (the
-dimension deficit), with the contraction sign built in, alpha free, the
-saturation floor emergent, and vacuum = GR by construction. This repository
-holds the two numerical checks behind the paper. (The stability, c_GW = c, and
-conformal-frame results are analytic; see the manuscript.)
+Requires Python 3.14, NumPy 2.4.2, SciPy 1.17.1, Matplotlib 3.10.8,
+TeX Live with revtex4-2, and Poppler. The resource controller uses POSIX
+nice/setpriority, SIGPROF and SIGSTOP/SIGCONT.
 
-## Requirements
+The current reproduction environment is pinned in
+[`requirements-reproduction.txt`](requirements-reproduction.txt). The original
+`requirements.txt` belongs to the historical top-level scripts. Install the
+current Python dependencies in an isolated Python 3.14 environment with
+`python3 -m pip install -r requirements-reproduction.txt`.
 
-Python >= 3.8 with `numpy`, `scipy`.
-
-## Contents
-
-| File | Purpose |
-|---|---|
-| `u_sigma.py` | **The potential.** Shows the one-parameter potential `U'(sigma) = lambda [sigma/(A-sigma)]^(1/alpha)` reproduces the series saturating law `sigma_eq(rho) = A x/(1+x)` to machine precision, for alpha = 0.12, 0.30, 0.50, 1.0 (outer crust -> NS core); U is convex (tachyon-free) and the sigma->A wall gives the floor `d_eff > 2.974`. Demonstrates **alpha is a free shape parameter, not forced to 1**. |
-| `geff_check.py` | **The stellar limit.** Integrates TOV with `dP/dr` multiplied by the action's coupling factor `G_eff(rho)/G_N = 1/(1 - A x/(1+x))`, and confirms it reproduces Paper III V8's divergence-operator contraction (M_max -0.6%, R(1.4) -0.3% vs the operator's -0.71%/-0.42%) and is opposite in sign to the early force-rescaling ansatz (+0.9%, expansion). The ~0.1 pp gap to the full operator is the genuinely-dimensional, non-local piece a local field omits. Gate: A=0 reproduces the GR baseline. |
-| `eos.py`, `tov.py` | SLy equation of state (CompOSE crust-to-core table) and baseline TOV solver — the same gate-validated modules as the Paper III repo (`merrill2025_neutronstar_code`). |
-| `data/` | CompOSE RG(SLY4) table (`eos.thermo`, `eos.nb`, reference curve `eos.mr`) and the Douchin & Haensel table. |
-
-## Usage
+From the repository directory:
 
 ```sh
-export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 \
-       VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1
-
-python3 u_sigma.py     # potential -> saturating law, alpha free (instant)
-python3 geff_check.py  # stellar limit -> contraction reproduces III V8 (seconds)
+nice -n 19 python3 reproduce.py --output /tmp/merrill2026_field_theoretic_rdt_origin_code-reproduction
 ```
 
-## Terrestrial test (continuation note)
+The output directory must not exist. This verifies every capsule checksum,
+regenerates tables, figures or algebraic checks from retained scientific outputs,
+and builds a PDF whose extracted text matches the included paper.
+No parameter scan runs in this command. Full scientific runs use the producing
+scripts and their data under `reproduction/`. Use one worker, verified nice 19,
+at most 95% of one CPU and one native-library thread.
 
-The `terrestrial_G/` subdirectory holds the code for the continuation note
-*A Terrestrial Test of Radial Dimensionality Theory: Source-Mass Density
-Dependence of Newton's Constant*, which applies this paper's coupling
-`G_eff = G_N/(1 - sigma)` to laboratory determinations of `G`. Because a uniform
-body's external field is enhanced by `1/(1 - sigma(rho))`, denser **source**
-masses should gravitate fractionally harder, so measured `G` should depend
-weakly on source-mass density.
+`release.json` identifies the current manuscript and PDF;
+`reproduction/CAPSULE.json` binds the scientific source and data by checksum.
+Shared dependencies and saved results are included so no sibling checkout is
+required. Historical top-level scripts and data retain their original identity;
+the current paper and source manifest distinguish them from the revised results.
 
-| File | Purpose |
-|---|---|
-| `terrestrial_G/terrestrial_g.py` | **The prediction.** The source-density differential `Delta G/G = sigma(rho1) - sigma(rho2)` for representative material pairs, and the sapphire -> tungsten signal for a dedicated experiment. |
-| `terrestrial_G/g_regression.py` | **The test.** Regression of the RDT slope against the CODATA-input `G` dataset (N=12; values pinned to Schlamminger-Gundlach-Newman 2015 and Metrologia 2026), Birge-inflated; plus the NIST-2026 within-apparatus copper-vs-sapphire controlled swap. |
+## Scientific scope
 
-```sh
-python3 terrestrial_G/terrestrial_g.py   # RDT source-density differential (instant)
-python3 terrestrial_G/g_regression.py    # regression + NIST controlled swap (instant)
-```
-
-The result is systematics-limited and internally ambiguous — a screen and a
-proposal, not a measurement of `A`; see the continuation note for the full
-discussion.
-
-## Related repositories
-
-The stellar machinery (`eos.py`, `tov.py`, `data/`) is shared with the Paper III
-repository `merrill2025_neutronstar_code`, whose full divergence-operator solver
-(`tov_operator.py`) produces the -0.71% / -0.42% result this paper's coupling
-reproduces to within ~0.1 pp. Paper V's black-hole results (`merrill2025_-
-blackholes_code`) are inherited by construction here, since `G_eff -> G_N` in
-vacuum.
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+This version retains the published title, but does not establish the field-theoretic origin named in it. The proposed positive-density equilibrium fails the equations of the written scalar action, so the revision audits a failed candidate derivation and withdraws the claimed origin and equivalence between local coupling and the weighted radial operator. The action remains as an audited candidate; earlier local-coupling stellar diagnostics are not solutions of the full scalar stellar problem. This failure does not exclude the separately specified phenomenological operator model or every possible field-theoretic completion.

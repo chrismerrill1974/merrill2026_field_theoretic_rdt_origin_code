@@ -1,0 +1,207 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[hidelinks]{hyperref}
+\raggedbottom
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\emergencystretch}{2em}
+\newcommand{\Mpl}{M_{\rm Pl}}
+\newcommand{\GN}{G_N}
+\begin{document}
+\title{Radial Dimensionality Theory VI: A Field-Theoretic Origin for the Density-Dependent Gravitational Coupling}
+\author{Christopher K. Merrill\\\small Independent Researcher\\[1ex]
+Claude (Anthropic)\\\small Large Language Model, Computational Collaboration\\[1ex]
+Astra (Open AI)\\\small Large Language Model, Computational Collaboration}
+\date{Consistency revision: November 12, 2026}
+\maketitle
+\begin{abstract}
+We audit a scalar-coupling candidate motivated by the RDT density law.
+For the written coupling $F(\sigma)=M_{\rm Pl}^2(1-\sigma)$, variation of
+the action gives $M^2\Box\sigma=U'+M_{\rm Pl}^2R/2$. The previously chosen
+increasing potential cannot support the claimed positive-density adiabatic
+equilibrium on $0<\sigma<A$ with positive curvature. An exact constant-field
+trace check gives the same obstruction for nonrelativistic matter and
+nonnegative potential. This invalidates the proposed equilibrium derivation,
+not the separately specified divergence-operator model. We retain the action
+as an audited candidate, distinguish local coupling from the weighted radial
+operator, and withdraw unsupported stellar, screening and completion claims.
+\end{abstract}
+
+\section*{Version note: v2}
+This version retains the published title, but does not establish the field-theoretic origin named in it. The proposed positive-density equilibrium fails the equations of the written scalar action, so the revision audits a failed candidate derivation and withdraws the claimed origin and equivalence between local coupling and the weighted radial operator. The action remains as an audited candidate; earlier local-coupling stellar diagnostics are not solutions of the full scalar stellar problem. This failure does not exclude the separately specified phenomenological operator model or every possible field-theoretic completion.
+
+
+\section{Three different prescriptions}
+Let $x=(\rho/\rho_0)^\alpha$ and $\delta=-3Ax/(1+x)$. The operator used in
+the series has radial weight
+\begin{equation}
+ W(r)=r^2(r/r_\star)^{\delta(r)},\qquad
+ a_{\rm op}(r)=\frac{4\pi\GN}{W(r)}\int_0^r W(s)\rho(s)\,ds.
+\end{equation}
+The dimensionless ratio $r/r_\star$ is required when the exponent varies.
+The local assignment $G_F=\GN/(1-\sigma)$ with $\sigma=Ax/(1+x)$ is a
+separate prescription. Multiplying a TOV pressure gradient by $G_F/\GN$
+is a third prescription: it is not a solution of the scalar equations.
+
+Even for constant $\delta$, local equality fails for a regular nonuniform
+profile. For $\rho(r)=\rho_c[1-q(r/R)^2]$,
+\begin{equation}
+ \frac{a_{\rm op}}{a_N}=
+ \frac{1/(3+\delta)-q(r/R)^2/(5+\delta)}{1/3-q(r/R)^2/5}.
+\end{equation}
+At $q=0.7$, $r=R$, $\delta=-0.02$ this is $1.00866321$, whereas the
+central ratio $3/(3+\delta)$ is $1.00671141$. This analytic counterexample
+refutes universal local equivalence; it is not a fitted stellar model or a
+no-go theorem for every possible covariant completion.
+
+\section{Normalized action and field equations}
+Use signature $(-+++)$, $\hbar=c=1$, $\Mpl^2=(8\pi\GN)^{-1}$ and
+$T_{\mu\nu}=-2(\delta S_m/\delta g^{\mu\nu})/\sqrt{-g}$:
+\begin{equation}
+ S=\int\!d^4x\sqrt{-g}\left[\frac{F(\sigma)}2R
+ -\frac{M^2}2(\nabla\sigma)^2-U(\sigma)\right]+S_m[g,\psi],
+ \quad F=\Mpl^2(1-\sigma).
+\end{equation}
+Here $\sigma$ is dimensionless, $F$ and $M^2$ have mass dimension two,
+and $U$ has mass dimension four. $M$ is a free normalization scale;
+no screened value has been established. Direct variation gives
+\begin{align}
+ F G_{\mu\nu}&=T_{\mu\nu}+M^2\left(\nabla_\mu\sigma\nabla_\nu\sigma
+ -\tfrac12g_{\mu\nu}(\nabla\sigma)^2\right)-g_{\mu\nu}U
+ +\nabla_\mu\nabla_\nu F-g_{\mu\nu}\Box F,\\
+ M^2\Box\sigma&=U'-\tfrac12F'R=U'+\tfrac12\Mpl^2R.
+\end{align}
+The metric derivative contribution is
+$-\Mpl^2(\nabla_\mu\nabla_\nu\sigma-g_{\mu\nu}\Box\sigma)$;
+the earlier schematic expression had the opposite sign. $G_F=1/(8\pi F)$
+is the curvature coefficient's coupling, not automatically the gravitational
+constant measured in an apparatus with scalar exchange.
+
+\section{Why the proposed equilibrium fails}
+The earlier construction assigned, for $\lambda>0$ of mass dimension four,
+\begin{equation}
+ U'=\lambda\left[\frac{\sigma}{A-\sigma}\right]^{1/\alpha},\qquad
+ U(\sigma)=\lambda\int_0^\sigma
+ \left[\frac{s}{A-s}\right]^{1/\alpha}ds.
+\end{equation}
+Solving the separately assigned equation $U'=\lambda\rho/\rho_0$ does
+algebraically reproduce $\sigma=Ax/(1+x)$. However, with positive curvature
+the action instead requires $U'=-\Mpl^2R/2$ for a constant field. Both
+terms in $U'+\Mpl^2R/2$ are positive in the proposed matter branch.
+The successful inversion in the historical \texttt{u\_sigma.py} tested an
+assigned source equation with the wrong sign for this action.
+
+This does not rely solely on substituting the GR trace. The exact trace is
+\begin{equation}
+ FR=-T+M^2(\nabla\sigma)^2+4U-3\Mpl^2\Box\sigma.
+\end{equation}
+At constant field with nonrelativistic $T=-\rho$, the scalar equation becomes
+\begin{equation}
+ 0=U'+\frac{\rho+4U}{2(1-\sigma)}.
+\end{equation}
+For $\rho>0$, $0<\sigma<A<1$ and the specified $U\ge0$, there is no
+solution. This excludes the claimed adiabatic branch, not arbitrary
+pressure-supported, gradient-dominated or differently normalized theories.
+Changing the coupling, potential or source is a model change requiring its
+own analysis; no repair is silently substituted here.
+
+Two further mathematical corrections matter. For $\alpha=1$ the stated
+$U'=\lambda\sigma/(A-\sigma)$ is not globally linear: the potential is
+quadratic only near zero. For $\alpha\le1$ the integral diverges at the
+wall; a finite integral ending at $0.999A$ is not the value at $A$.
+For $\alpha<1$, $U''(0^+)=0$, so the proposed bare potential alone does
+not give a heavy vacuum scalar.
+
+\section{What the kinetic and tensor checks establish}
+Under $g^E_{\mu\nu}=(1-\sigma)g_{\mu\nu}$, the Einstein-frame scalar
+kinetic coefficient (dimension mass squared) is
+\begin{equation}
+ K(\sigma)=\frac{M^2}{1-\sigma}
+ +\frac{3\Mpl^2}{2(1-\sigma)^2},\qquad
+ \frac{d\chi}{d\sigma}=\sqrt K.
+\end{equation}
+It is positive for $M^2>0$, $\sigma<1$. This is a kinetic-sign check,
+not a proof of stable screened backgrounds. The canonical dimensionless
+matter coupling is
+\begin{equation}
+ \beta_\chi=\Mpl\frac{d\ln(1-\sigma)^{-1/2}}{d\chi}
+ =\frac{\Mpl}{2(1-\sigma)\sqrt K}.
+\end{equation}
+It depends on $M/\Mpl$; the previous value $1/2$ differentiated with respect
+to the unnormalized field and was not the physical coupling. A mandatory
+short-range branch does not follow from that value.
+
+The two-derivative $F(\sigma)R$ action has tensor characteristics on the
+metric null cone for a regular $F>0$ background \cite{Baker}; this says nothing about
+scalar charge amplitudes or observed waveform agreement. A Ricci-flat
+constant $\sigma=0$ background is possible if $U(0)=U'(0)=0$.
+Additional scalar perturbations remain; a GR background does not establish
+GR for all vacuum dynamics or all boundary conditions.
+
+\section{Stellar and empirical status}
+The canonical operator-model scan~\cite{Series_paper1} uses $\rho_0=150\,{\rm g\,cm^{-3}}$
+and $\alpha\in[0.02,0.5]$. Its nominal solar proxy threshold, denoted
+$A_{\rm lim}$, has a sampled and locally refined amplitude peak
+$A=0.0087502019$ at $\alpha=0.1244971139$ (asymptote $3-3A=2.973749394$).
+It has neither calibrated confidence coverage nor a certified continuous
+maximum. Changing the physical response requires a new solar comparison;
+sharing a density-law shape does not transfer this threshold.
+
+The historical \texttt{geff\_check.py} used $(A,\alpha)=(0.0087,0.122)$,
+not the manuscript's rounded $\alpha=0.12$, and the older \texttt{ns\_v7}
+implementation. Its reported $-0.60\%$ mass and $-0.34\%$ radius shifts
+are archived local-TOV diagnostics, not checked scalar-star predictions.
+They are removed from the current prediction table. No new scalar stellar
+integration is performed in this revision.
+
+The current III--IV revisions~\cite{Series_paper3,Series_paper4} use CompOSE RG(SLy4), finite-pressure
+cutoffs and separately checked phenomenological embeddings. Their modified
+mass curves reach the EOS boundary without a bracketed maximum; their
+conditional tidal extraction retains an approximately $1.30\%$
+interior/exterior metric-gradient mismatch. None of these checks validates
+this action or transfers a tidal shift to it. The old scalar-tensor companion~\cite{Series_companion}
+uses a different action and is audited separately.
+
+\section{Conclusion and version changes}
+The local equilibrium derivation fails a necessary sign check. The operator
+series remains a separate empirical model, and the local Poisson ansatz can
+also be tested as a declared phenomenological model. Neither is derived by
+the action as currently specified. Claims of completion, screening,
+automatic solar-bound transfer and reproduced tides are withdrawn.
+The next theoretical task is an explicit revised action/source construction,
+followed by its own field and observational calculations.
+\section*{Code and revision availability}
+Producing scripts, inputs, saved results and numerical audit evidence are
+publicly available in the \href{https://github.com/chrismerrill1974/solarcore_code/tree/main/reproduction}{shared RDT reproducibility archive}.
+The accompanying source package, \nolinkurl{merrill2026_field_theoretic_rdt_origin_code}, includes the
+manuscript, dependencies and resource-controlled reproduction commands.
+Its \texttt{reproduction/CAPSULE.json} records file hashes;
+\texttt{reproduce.py} verifies the package and rebuilds the paper from retained
+scientific outputs. Full scientific runs are separate from this saved-result
+reproduction. Historical scripts and results remain separately identified.
+
+\paragraph{Computational collaboration.} Claude (Anthropic) and Astra (Open AI).
+
+\begin{thebibliography}{9}
+\bibitem{Baker} T.~Baker et al., ``Strong constraints on cosmological gravity
+from GW170817 and GRB 170817A,'' Phys. Rev. Lett. \textbf{119}, 251301 (2017),
+\href{https://arxiv.org/abs/1710.06394}{arXiv:1710.06394}.
+\bibitem{Series_companion} C.~K.~Merrill, Claude (Anthropic), and Astra (Open AI),
+``A Scalar-Tensor Companion to Radial Dimensionality Theory: A Chameleon Model Reproducing the Density Law, with Gravitational-Wave Predictions,''
+revised version, November 12, 2026.
+
+\bibitem{Series_paper1} C.~K.~Merrill, Claude (Anthropic), and Astra (Open AI),
+``Radial Dimensionality Theory I: Solar Neutrino and Helioseismic Constraints on Density-Dependent Spatial Dimensionality,''
+revised version, November 12, 2026.
+
+\bibitem{Series_paper3} C.~K.~Merrill, Claude (Anthropic), and Astra (Open AI),
+``Radial Dimensionality Theory III: Neutron Star Structure under Solar-Constrained Density-Dependent Dimensionality,''
+revised version, November 12, 2026.
+
+\bibitem{Series_paper4} C.~K.~Merrill, Claude (Anthropic), and Astra (Open AI),
+``Radial Dimensionality Theory IV: Tidal Deformability Ceilings under Solar-Constrained Density-Dependent Dimensionality,''
+revised version, November 12, 2026.
+
+\end{thebibliography}
+\end{document}

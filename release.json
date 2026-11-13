@@ -1,0 +1,15 @@
+{
+  "version": "v2",
+  "works": [
+    "paper6"
+  ],
+  "scientific_input_commit": "f4cff7fbcbd795e876c2e0232dbde5a73637a9d7",
+  "capsule_sha256": "c115681f84af00bd29b765cb66b7212993f0a8d4be258773b13be4dfb0554f20",
+  "manuscripts": {
+    "paper6": "reproduction/paper6/V1_Paper/paper6_v1.tex"
+  },
+  "pdfs": {
+    "paper6": "reproduction/output/pdf/publication/paper6/merrill_rdt_field_theoretic_origin_v2.pdf"
+  },
+  "repository": "https://github.com/chrismerrill1974/merrill2026_field_theoretic_rdt_origin_code"
+}

@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Cite the paper and its source revision."
+title: "Radial Dimensionality Theory VI: A Field-Theoretic Origin for the Density-Dependent Gravitational Coupling"
+version: "v2"
+authors:
+  - family-names: Merrill
+    given-names: Christopher K.
+  - name: "Claude (Anthropic)"
+  - name: "Astra (Open AI)"
+repository-code: "https://github.com/chrismerrill1974/merrill2026_field_theoretic_rdt_origin_code"
